@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/Spring-aop.xsd">
+   
+    <bean id="company" class="com.beans.Company">
+        <constructor-arg name="name" value="arkdev"/>
+    </bean>
+    <util:list id="roles" >
+        
+        
+        <bean id="michael" class="java.lang.String">
+            <constructor-arg value="michael"/>
+        </bean>
+        <bean class="java.lang.String" c:_0="mina"/>
+        
+    </util:list>
+    <!--    <util:properties id="props" location="test.properties"/>-->
+    <!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <property name="locations" value="test.properties"/>
+    </bean>-->
+    <context:property-placeholder location="test.properties"/>
+    <bean name="employee1" class="com.beans.Employee" c:company-ref="company"  p:company-ref="company" init-method="initMethod2">
+        <property name="name" value="${name}"/>
+        <property name="id" value="1"/>
+        <property name="salary" value="1.1"/>
+        
+        <property name="roles" >
+            <list>
+                <bean id="michael" class="java.lang.String">
+                    <constructor-arg value="PM"/>
+                </bean>
+                <bean class="java.lang.String" c:_0="monty"/>
+            </list>
+                
+        </property>
+            
+    </bean>
+<!--        <context:annotation-config/>
+        <bean id="appConfigruation" class="com.conf.AppConfiguration"/>-->
+<!--    <context:component-scan base-package="com.beans,com.conf"/>-->
+    <!--    <import resource="beans2.xml"/>-->
+</beans>
